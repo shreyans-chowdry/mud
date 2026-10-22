@@ -1,6 +1,10 @@
 # Durable continuation record
 
-## Active checkpoint — October 22, 2026
+## Latest completed cloud-check result — October 22, 2026
+
+Run https://github.com/shreyans-chowdry/mud/actions/runs/39771634097 finished: protocol PASS, security FAIL. Code ae95e3e passed the full remote integration/browser workflow. Root tooling audit remains 7 high / 11 moderate / 10 low; Python audit, frontend production-only gate and Slither high gate passed. Braces has no published patched release at the current check. Keep CI thresholds intact. Full results are in docs/VERIFICATION.md and docs/evidence/cloud-verification.json. No production deployment or Codex Cloud AI coding task is running. Earlier pending-run statements below are historical and superseded.
+
+## Previous checkpoint — October 22, 2026
 
 The original local implementation and Desktop delivery were completed October 18. The user subsequently requested Base, removal of public demo data, real configuration guidance, and coding that can continue with the Mac off. Current source is saved here; preserve user edits. Read README.md, docs/VERIFICATION.md, docs/LIVE_SETUP.md and docs/API_KEYS.md before changing it. No mainnet transaction is authorized.
 
