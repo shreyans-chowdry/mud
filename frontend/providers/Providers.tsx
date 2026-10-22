@@ -15,7 +15,7 @@ function DeploymentProvider({children}:{children:React.ReactNode}) {
   verifyBackendDeployment(d,await api<unknown>('/deployment'));
   return d;
  },retry:false,staleTime:60000});
- return <Context.Provider value={{deployment:query.data,error:query.error,loading:query.isPending}}>{children}</Context.Provider>;
+ return <Context.Provider value={{deployment:query.isError?undefined:query.data,error:query.error,loading:query.isPending}}>{children}</Context.Provider>;
 }
 export function useProtocol(){return useContext(Context);}
 export function Providers({children}:{children:React.ReactNode}) {

@@ -4,6 +4,8 @@
 
 The latest public build has no deployed protocol manifest or sample catalog. It does not display historical test values as current data. New checks cover test-network rejection, mismatched API/module addresses, stale cached sample suppression, remote environment validation and unavailable eligibility. Current local results: **16 contract tests passed; 25 frontend tests passed; 18 backend tests passed and 2 real-chain tests skipped** (no test chain supplied). TypeScript, ESLint, Ruff, shell syntax and the production frontend build passed. Selected execution logs are in docs/evidence/live-data-*. The blank production template correctly fails the read-only preflight with missing configuration fields. Production frontend build and production Compose configuration validation passed. Initial remote CI run 39770603090 failed before tests because GitHub runner parsing rejected the single-quoted PostgreSQL health check. The workflow now uses double quotes; its rerun result must be checked separately. No mainnet transaction or live deployment was made, and no Codex Cloud coding task is claimed started.
 
+A browser check of the new production build verified unavailable dashboard metrics, disabled wallet/trading actions and an empty unconfigured marketplace (docs/evidence/live-data-public-browser.md). The full seeded browser journeys below remain historical.
+
 Historical local acceptance below describes the earlier explicitly seeded test environment. It is evidence of executed behavior, not current balances, listed real goods or production readiness. New code still requires its current checks; historical browser results must not be represented as a rerun of the new public build.
 
 ## Historical local acceptance evidence and production release blockers
