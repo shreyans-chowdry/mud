@@ -9,7 +9,7 @@ from app.main import create_app
 
 
 def live_settings(**overrides):
-    return Settings(_env_file=None, **{'environment': 'production', 'chain_id': 8453,
+    return Settings(_env_file=None, **{'environment': 'production', 'chain_id': 8453, 'eligibility_file': None,
         'rpc_http': 'https://rpc.example.com', 'rpc_ws': 'wss://rpc.example.com',
         'database_url': 'postgresql+asyncpg://user:password@db.example.com/mud',
         'redis_url': 'rediss://cache.example.com', 'confirmations': 20, 'finality_depth': 128, **overrides})
