@@ -1,0 +1,15 @@
+**/node_modules
+**/.venv
+**/__pycache__
+**/.next
+**/htmlcov
+**/coverage
+.git
+.env
+.env.*
+runtime
+frontend/test-results
+frontend/playwright-report
+contracts/cache
+frontend/public/deployment.json
+deployments/*.json

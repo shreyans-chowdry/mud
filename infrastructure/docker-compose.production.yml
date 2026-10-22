@@ -1,0 +1,54 @@
+name: mud-production
+# Managed PostgreSQL/Redis and public RPCs are required. This file has no local chain or mock receiver.
+x-backend: &backend
+  build:
+    context: ..
+    dockerfile: backend/Dockerfile
+  env_file: ../.env.production
+  environment:
+    MUD_ENVIRONMENT: production
+    MUD_CHAIN_ID: 8453
+    MUD_RUN_WORKERS: 'false'
+  volumes:
+    - ../deployments:/app/deployments:ro
+    - ../config:/app/config:ro
+  restart: unless-stopped
+services:
+  migrate:
+    <<: *backend
+    command: [alembic, upgrade, head]
+    restart: 'no'
+  api:
+    <<: *backend
+    ports: ['127.0.0.1:8000:8000']
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/ready',timeout=10)"]
+      interval: 15s
+      timeout: 15s
+      retries: 8
+  indexer:
+    <<: *backend
+    command: [python, -m, app.workers.indexer]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+  outbox:
+    <<: *backend
+    command: [python, -m, app.workers.outbox_worker]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+  frontend:
+    build:
+      context: ..
+      dockerfile: frontend/Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:?Set the public HTTPS API origin}
+        NEXT_PUBLIC_BASE_RPC: ${NEXT_PUBLIC_BASE_RPC:?Set a restricted browser Base RPC endpoint}
+        NEXT_PUBLIC_ALLOW_TEST_NETWORKS: 'false'
+    volumes:
+      - ../deployments/8453.json:/app/public/deployment.json:ro
+    ports: ['127.0.0.1:3000:3000']
+    restart: unless-stopped
+    depends_on:
+      api: {condition: service_healthy}

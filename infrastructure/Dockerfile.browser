@@ -1,0 +1,9 @@
+FROM mcr.microsoft.com/playwright:v1.56.1-noble
+RUN apt-get update && apt-get install -y --no-install-recommends build-essential && rm -rf /var/lib/apt/lists/*
+WORKDIR /project
+COPY frontend/package.json frontend/package-lock.json ./
+RUN npm ci --no-audit --no-fund
+COPY frontend ./
+COPY infrastructure/browser-relay.cjs /relay.cjs
+ENV MUD_BROWSER_EXTERNAL_SERVER=1
+CMD ["bash", "-lc", "node /relay.cjs & npm run test:browser; mud_test_exit=$?; mkdir -p /evidence; cp -R test-results /evidence/; cp -R playwright-report /evidence/; exit $mud_test_exit"]

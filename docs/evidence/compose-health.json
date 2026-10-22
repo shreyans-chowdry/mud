@@ -1,0 +1,56 @@
+[
+  {
+    "Service": "api",
+    "Image": "mud-local-api",
+    "State": "running",
+    "Health": "healthy"
+  },
+  {
+    "Service": "chain",
+    "Image": "mud-local-chain",
+    "State": "running",
+    "Health": "healthy"
+  },
+  {
+    "Service": "frontend",
+    "Image": "mud-local-frontend",
+    "State": "running",
+    "Health": ""
+  },
+  {
+    "Service": "fulfillment",
+    "Image": "mud-local-fulfillment",
+    "State": "running",
+    "Health": ""
+  },
+  {
+    "Service": "indexer",
+    "Image": "mud-local-indexer",
+    "State": "running",
+    "Health": ""
+  },
+  {
+    "Service": "outbox",
+    "Image": "mud-local-outbox",
+    "State": "running",
+    "Health": ""
+  },
+  {
+    "Service": "postgres",
+    "Image": "postgres:16.8-bookworm",
+    "State": "running",
+    "Health": "healthy"
+  },
+  {
+    "Service": "prometheus",
+    "Image": "prom/prometheus:v3.3.0",
+    "State": "running",
+    "Health": ""
+  },
+  {
+    "Service": "redis",
+    "Image": "redis:7.4.3-bookworm",
+    "State": "running",
+    "Health": "healthy"
+  }
+]

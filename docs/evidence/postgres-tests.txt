@@ -1,0 +1,45 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.4, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/shreyanschowdry/Documents/Codex/2026-10-17/make-x20/outputs/mud-protocol/backend
+configfile: pyproject.toml
+plugins: asyncio-1.4.0, cov-6.1.1, anyio-4.15.1
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 16 items
+
+backend/tests/test_live_chain.py .                                       [  6%]
+backend/tests/test_live_reorg.py .                                       [ 12%]
+backend/tests/test_protocol.py ..............                            [100%]
+
+=============================== warnings summary ===============================
+backend/.venv/lib/python3.12/site-packages/websockets/legacy/__init__.py:6
+  /Users/shreyanschowdry/Documents/Codex/2026-10-17/make-x20/outputs/mud-protocol/backend/.venv/lib/python3.12/site-packages/websockets/legacy/__init__.py:6: DeprecationWarning: websockets.legacy is deprecated; see https://websockets.readthedocs.io/en/stable/howto/upgrade.html for upgrade instructions
+    warnings.warn(  # deprecated in 14.0 - 2024-11-09
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.12.4-final-0 _______________
+
+Name                                      Stmts   Miss  Cover
+-------------------------------------------------------------
+backend/app/__init__.py                       0      0   100%
+backend/app/api.py                           93     61    34%
+backend/app/blockchain.py                    68      6    91%
+backend/app/config.py                        48      7    85%
+backend/app/database.py                      17      4    76%
+backend/app/fulfillment.py                   65     33    49%
+backend/app/main.py                          84     17    80%
+backend/app/metrics.py                       10      0   100%
+backend/app/models.py                       104      0   100%
+backend/app/schemas.py                       49      4    92%
+backend/app/security.py                      46      5    89%
+backend/app/services/__init__.py              0      0   100%
+backend/app/services/airdrop_service.py      28      0   100%
+backend/app/services/curve_service.py        37      5    86%
+backend/app/services/order_service.py        38      3    92%
+backend/app/services/webhook_service.py      28      5    82%
+backend/app/workers/__init__.py               0      0   100%
+backend/app/workers/indexer.py              209     35    83%
+backend/app/workers/outbox_worker.py         82     22    73%
+-------------------------------------------------------------
+TOTAL                                      1006    207    79%
+======================== 16 passed, 1 warning in 8.75s =========================

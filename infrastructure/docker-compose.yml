@@ -1,0 +1,104 @@
+name: mud-local
+x-backend: &backend
+  build:
+    context: ..
+    dockerfile: backend/Dockerfile
+  env_file: ../.env
+  environment: &backend-env
+    MUD_DATABASE_URL: postgresql+asyncpg://mud:${POSTGRES_PASSWORD:?Run scripts/init-local.py first}@postgres:5432/mud
+    MUD_REDIS_URL: redis://redis:6379/0
+    MUD_RPC_HTTP: http://chain:8545
+    MUD_RPC_WS: ws://chain:8545
+    MUD_WEBHOOK_URL: http://fulfillment:8001/fulfill
+    MUD_WEBHOOK_ALLOW_HOSTS: '["fulfillment"]'
+  volumes:
+    - ../deployments:/app/deployments:ro
+    - ../tests/fixtures:/app/tests/fixtures:ro
+  restart: unless-stopped
+services:
+  postgres:
+    image: postgres:16.8-bookworm
+    environment:
+      POSTGRES_DB: mud
+      POSTGRES_USER: mud
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run scripts/init-local.py first}
+    volumes: [pg-data:/var/lib/postgresql/data]
+    ports: ["127.0.0.1:${MUD_POSTGRES_PORT:-5432}:5432"]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U mud -d mud"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+  redis:
+    image: redis:7.4.3-bookworm
+    command: [redis-server, /usr/local/etc/redis/redis.conf]
+    volumes: ["./redis.conf:/usr/local/etc/redis/redis.conf:ro", "redis-data:/data"]
+    ports: ["127.0.0.1:${MUD_REDIS_PORT:-6379}:6379"]
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+  chain:
+    build:
+      context: ..
+      dockerfile: infrastructure/Dockerfile.chain
+    ports: ["127.0.0.1:8545:8545"]
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:8545',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'eth_chainId',params:[]})}).then(r=>r.json()).then(r=>{if(r.result!=='0x7a69')process.exit(1)})"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+  migrate:
+    <<: *backend
+    command: [alembic, upgrade, head]
+    restart: 'no'
+    depends_on:
+      postgres: {condition: service_healthy}
+  api:
+    <<: *backend
+    ports: ["127.0.0.1:8000:8000"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+      chain: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/ready',timeout=10)"]
+      interval: 10s
+      timeout: 15s
+      retries: 20
+  indexer:
+    <<: *backend
+    command: [python, -m, app.workers.indexer]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      chain: {condition: service_healthy}
+  outbox:
+    <<: *backend
+    command: [python, -m, app.workers.outbox_worker]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+  fulfillment:
+    <<: *backend
+    command: [uvicorn, app.fulfillment:app, --host, 0.0.0.0, --port, '8001']
+    ports: ["127.0.0.1:8001:8001"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+  frontend:
+    build:
+      context: ..
+      dockerfile: frontend/Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://127.0.0.1:8000
+        NEXT_PUBLIC_ALLOW_TEST_NETWORKS: 'true'
+    ports: ["127.0.0.1:3000:3000"]
+    volumes: ["../frontend/public/deployment.json:/app/public/deployment.json:ro"]
+    depends_on:
+      api: {condition: service_healthy}
+  prometheus:
+    image: prom/prometheus:v3.3.0
+    volumes: ["./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro", "./monitoring/alerts.yml:/etc/prometheus/alerts.yml:ro"]
+    ports: ["127.0.0.1:9090:9090"]
+volumes:
+  pg-data:
+  redis-data:

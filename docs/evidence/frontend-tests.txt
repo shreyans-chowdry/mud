@@ -1,0 +1,19 @@
+
+> mud-terminal@1.0.0 test
+> vitest run
+
+
+ RUN  v3.2.4 /Users/shreyanschowdry/Documents/Codex/2026-10-17/make-x20/outputs/mud-protocol/frontend
+
+ ✓ tests/orders.test.ts (1 test) 5ms
+ ✓ tests/format.test.ts (3 tests) 3ms
+ ✓ tests/transaction.test.tsx (2 tests) 22ms
+ ✓ tests/OrderTracking.test.tsx (2 tests) 54ms
+ ✓ tests/Wallet.test.tsx (3 tests) 121ms
+ ✓ tests/Swap.test.tsx (6 tests) 430ms
+
+ Test Files  6 passed (6)
+      Tests  17 passed (17)
+   Start at  04:22:55
+   Duration  3.00s (transform 466ms, setup 3.10s, collect 2.22s, tests 635ms, environment 5.22s, prepare 1.13s)
+

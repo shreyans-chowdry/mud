@@ -1,0 +1,19 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.4, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/shreyanschowdry/Documents/Codex/2026-10-17/make-x20/outputs/mud-protocol/backend
+configfile: pyproject.toml
+plugins: asyncio-1.4.0, cov-6.1.1, anyio-4.15.1
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 16 items
+
+backend/tests/test_live_chain.py .                                       [  6%]
+backend/tests/test_live_reorg.py .                                       [ 12%]
+backend/tests/test_protocol.py ..............                            [100%]
+
+=============================== warnings summary ===============================
+backend/.venv/lib/python3.12/site-packages/websockets/legacy/__init__.py:6
+  /Users/shreyanschowdry/Documents/Codex/2026-10-17/make-x20/outputs/mud-protocol/backend/.venv/lib/python3.12/site-packages/websockets/legacy/__init__.py:6: DeprecationWarning: websockets.legacy is deprecated; see https://websockets.readthedocs.io/en/stable/howto/upgrade.html for upgrade instructions
+    warnings.warn(  # deprecated in 14.0 - 2024-11-09
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 16 passed, 1 warning in 2.77s =========================

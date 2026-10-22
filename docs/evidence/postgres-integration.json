@@ -1,0 +1,24 @@
+{
+  "chain_id": 31337,
+  "database_backend": "postgresql",
+  "order_id": "b062b51b-bb72-4c99-bac6-5a5fbae10122",
+  "transaction_hash": "0xd6de618991d426cea4da4d4b7cb5e72b385728baf54533f7eef3f20245fcc27b",
+  "status": "FULFILLED",
+  "canonical_finality": "FINALIZED",
+  "events_before_replay": 20,
+  "events_after_replay": 20,
+  "replayed_log_count": 3,
+  "outbox_delivery_records": 1,
+  "receiver_receipts_for_key": 1,
+  "entitlements_for_order": 1,
+  "signed_duplicate_requests": 2,
+  "verified_at_unix": 1792304754,
+  "schema_head": "0003",
+  "ordered_transition_history_verified": true,
+  "transition_sequences": [
+    1,
+    2,
+    3,
+    4
+  ]
+}

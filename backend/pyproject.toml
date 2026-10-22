@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools==75.8.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mud-backend"
+version = "1.0.0"
+requires-python = ">=3.11"
+dependencies = [
+ "fastapi==0.143.3", "starlette==1.8.0", "uvicorn[standard]==0.34.2", "pydantic==2.11.4", "pydantic-settings==2.9.1",
+ "SQLAlchemy==2.0.40", "greenlet==3.2.2", "asyncpg==0.30.0", "alembic==1.15.2", "web3==7.11.1", "redis==6.0.0",
+ "httpx==0.28.1", "prometheus-client==0.22.0", "python-json-logger==3.3.0"
+]
+[project.optional-dependencies]
+test = ["pytest==9.1.1", "pytest-asyncio==1.4.0", "pytest-cov==6.1.1", "aiosqlite==0.21.0", "ruff==0.11.8"]
+[tool.setuptools.packages.find]
+include = ["app*"]
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+[tool.ruff]
+line-length = 120
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]

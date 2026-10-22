@@ -1,0 +1,36 @@
+
+> mud-terminal@1.0.0 build
+> next build
+
+   ▲ Next.js 15.5.28
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 2.7s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/9) ...
+   Generating static pages (2/9) 
+   Generating static pages (4/9) 
+   Generating static pages (6/9) 
+ ✓ Generating static pages (9/9)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                    3.24 kB         227 kB
+├ ○ /_not-found                            127 B         103 kB
+├ ○ /activity                            3.14 kB         148 kB
+├ ○ /airdrop                             1.98 kB         218 kB
+├ ○ /docs                                  164 B         106 kB
+├ ○ /marketplace                         5.61 kB         225 kB
+├ ƒ /orders/[orderId]                    3.46 kB         148 kB
+└ ○ /swap                                  176 B         221 kB
++ First Load JS shared by all             103 kB
+  ├ chunks/255-b1e2483a7e02feee.js       46.6 kB
+  ├ chunks/4bd1b696-c023c6e3521b1417.js  54.2 kB
+  └ other shared chunks (total)          1.96 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

@@ -1,0 +1,20 @@
+{
+  "configured": false,
+  "issues": [
+    "MUD_RPC_HTTP: required",
+    "MUD_RPC_WS: required",
+    "MUD_DATABASE_URL: required",
+    "MUD_REDIS_URL: required",
+    "MUD_WEBHOOK_URL: required",
+    "MUD_WEBHOOK_SECRET: required",
+    "NEXT_PUBLIC_API_URL: required",
+    "NEXT_PUBLIC_BASE_RPC: required",
+    "MUD_RPC_HTTP: a valid HTTPS origin/endpoint is required",
+    "MUD_WEBHOOK_URL: a valid HTTPS origin/endpoint is required",
+    "NEXT_PUBLIC_API_URL: a valid HTTPS origin/endpoint is required",
+    "NEXT_PUBLIC_BASE_RPC: a valid HTTPS origin/endpoint is required",
+    "MUD_CORS_ORIGINS: a nonempty explicit JSON allowlist is required",
+    "MUD_WEBHOOK_ALLOW_HOSTS: a nonempty explicit JSON allowlist is required",
+    "MUD_WEBHOOK_SECRET: generate at least 32 random characters"
+  ]
+}

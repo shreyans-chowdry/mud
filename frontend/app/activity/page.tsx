@@ -1,0 +1,2 @@
+import { ActivityTable } from '@/components/ActivityTable';
+export default function Page(){return <><div className="page-heading"><div><span className="eyebrow">EVERY MOVEMENT, ACCOUNTED FOR</span><h1>The economy<br/><span>leaves a record.</span></h1><p>Observed, confirmed and finalized events. Orphaned records remain visible for reconciliation.</p></div></div><section className="panel"><ActivityTable limit={100}/></section></>;}

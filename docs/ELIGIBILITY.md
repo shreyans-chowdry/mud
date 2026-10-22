@@ -1,0 +1,7 @@
+# Eligibility commitments
+
+Local fixture contains two publicly documented development wallet addresses; no private keys. It is not a production recipient list. The bitmap has 40 words: indices 0..9999. Amounts are integer MUD atoms, encoded as decimal strings. Indices and addresses are each unique. Leaves are double hashed Solidity ABI encoding (not packed), leaves sorted lexicographically, sibling pairs sorted, odd nodes promoted unchanged. A single leaf has an empty proof. This convention is compatible with OpenZeppelin MerkleProof, but not a claim to use the StandardMerkleTree file format.
+
+Production eligibility is an off-chain governance decision: obtain participant consent, apply published eligibility and abuse-review criteria, deduplicate addresses, support appeals before the commitment, and keep identifying evidence private. Merkle membership proves inclusion only; it does not establish unique humans or Sybil resistance. Sign and independently review the versioned dataset SHA-256 manifest before deployment. Airdrop funding must cover the entire allocation before any claim. There are no unbacked genesis mints. Root can be corrected before the first claim; the first successful claim freezes it permanently. Expiry recovery is owner-controlled and publicly emitted.
+
+Run the generator and separate verifier using the backend environment. Never use the local fixture in a remote deployment. Root, manifest dataset hash, allocation, network and escrow balance must be reviewed together.

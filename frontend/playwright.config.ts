@@ -1,0 +1,2 @@
+import { defineConfig } from '@playwright/test';
+export default defineConfig({testDir:'./browser',fullyParallel:false,workers:1,timeout:60000,retries:0,reporter:[['list'],['html',{open:'never'}]],use:{baseURL:process.env.MUD_WEB_URL||'http://127.0.0.1:3000',headless:true,viewport:{width:1440,height:1080},trace:'retain-on-failure',screenshot:'only-on-failure'},webServer:process.env.MUD_BROWSER_EXTERNAL_SERVER?undefined:{command:'npm run start',url:'http://127.0.0.1:3000',reuseExistingServer:true,timeout:30000}});

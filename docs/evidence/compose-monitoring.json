@@ -1,0 +1,17 @@
+[
+  {
+    "job": "mud-api",
+    "health": "up",
+    "last_error": ""
+  },
+  {
+    "job": "mud-indexer",
+    "health": "up",
+    "last_error": ""
+  },
+  {
+    "job": "mud-outbox",
+    "health": "up",
+    "last_error": ""
+  }
+]

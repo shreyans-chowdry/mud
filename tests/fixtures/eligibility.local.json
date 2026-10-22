@@ -1,0 +1,60 @@
+{
+  "encoding": "keccak256(keccak256(abi.encode(uint256,address,uint256))); sorted leaves and pairs; odd promoted",
+  "datasetVersion": "local-public-wallet-fixture-v1",
+  "datasetSha256": "d1eaa23c127601c4fd48e9a7dfb0765fd57942a4d45a27551b10a0c3a8712fac",
+  "root": "0x17e6944968fb75c355cfdbf9c290cba2c55fe7807e5ff3f1aae4f60026a29712",
+  "totalAllocation": "200000000000000000000",
+  "claims": [
+    {
+      "index": 0,
+      "address": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+      "allocation": "100000000000000000000",
+      "leaf": "0xd008787bdd03b5ea040a306d2b0c2cb911ba5cf044de8dbf493ee1d8ed2ba1b6",
+      "proof": [
+        "0x85ff5c6c8abd52723c1a1e120f8d6df9f5c65e9c66c229e38a72cd37dba5fa64"
+      ]
+    },
+    {
+      "index": 1,
+      "address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+      "allocation": "100000000000000000000",
+      "leaf": "0x85ff5c6c8abd52723c1a1e120f8d6df9f5c65e9c66c229e38a72cd37dba5fa64",
+      "proof": [
+        "0xd008787bdd03b5ea040a306d2b0c2cb911ba5cf044de8dbf493ee1d8ed2ba1b6"
+      ]
+    }
+  ],
+  "testVectors": {
+    "valid": {
+      "index": 1,
+      "address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+      "allocation": "100000000000000000000",
+      "leaf": "0x85ff5c6c8abd52723c1a1e120f8d6df9f5c65e9c66c229e38a72cd37dba5fa64",
+      "proof": [
+        "0xd008787bdd03b5ea040a306d2b0c2cb911ba5cf044de8dbf493ee1d8ed2ba1b6"
+      ]
+    },
+    "modifiedAmount": {
+      "index": 1,
+      "address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+      "allocation": "100000000000000000001",
+      "leaf": "0x85ff5c6c8abd52723c1a1e120f8d6df9f5c65e9c66c229e38a72cd37dba5fa64",
+      "proof": [
+        "0xd008787bdd03b5ea040a306d2b0c2cb911ba5cf044de8dbf493ee1d8ed2ba1b6"
+      ]
+    },
+    "invalidProof": {
+      "index": 1,
+      "address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+      "allocation": "100000000000000000000",
+      "leaf": "0x85ff5c6c8abd52723c1a1e120f8d6df9f5c65e9c66c229e38a72cd37dba5fa64",
+      "proof": [
+        "0x0000000000000000000000000000000000000000000000000000000000000000"
+      ]
+    },
+    "duplicateClaim": {
+      "index": 1,
+      "expected": "revert after first successful claim"
+    }
+  }
+}

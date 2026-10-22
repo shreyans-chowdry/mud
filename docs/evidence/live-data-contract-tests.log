@@ -1,0 +1,35 @@
+
+> mud-protocol@1.0.0 test:contracts
+> node scripts/hardhat.cjs test
+
+
+
+  Integrated curve: executable mathematics and conservation
+    ✔ quotes the greatest affordable integrated output, not a spot division (446ms)
+    ✔ fuzzes mint/burn and no-profit roundtrips with independent integer arithmetic (271ms)
+    ✔ preserves reserve coverage across deterministic adversarial buy/sell/burn sequences (213ms)
+    ✔ rejects zero, dust redemption, over-redemption, oversized input, slippage and expired deadlines (56ms)
+    ✔ rejects transfer taxes, failing transfers, negative rebases and reentrant callbacks (48ms)
+    ✔ separates fees and allows treasury collection without reducing claim coverage
+    ✔ bounds extreme supply and enforces immutable parameter constraints
+    ✔ tests guardian pause, two-step ownership and delayed bounded config
+
+  Airdrop: double-hash leaves, sorted pairs and one-way claims
+    ✔ requires full backing, checks proofs/amount/index, prevents replay and freezes root
+
+  Oracle and marketplace: authentic settlement and replay boundaries
+    ✔ pays exactly 95%, burns 5%, lowers liability and respects inventory/limits
+    ✔ verifies buyer-signed EIP-712 orders and rejects reuse and wrong chain/contract/nonce
+    ✔ rejects invalid, future, stale, depegged and incomplete oracle answers
+    ✔ guards L2 sequencer downtime and restart grace period, and normalizes decimals
+
+  Administrative merchant containment
+    ✔ prevents a merchant from bypassing administrative deactivation by registering again
+
+  Dust cycles and nonzero-supply inversion
+    ✔ cannot extract collateral through repeated one-atom roundtrips (156ms)
+    ✔ fuzzes integrated inversion from changing supply and validates min-output protection (453ms)
+
+
+  16 passing (2s)
+

@@ -1,0 +1,18 @@
+
+> mud-terminal@1.0.0 test:browser
+> playwright test
+
+
+Running 4 tests using 1 worker
+
+  ✓  1 browser/protocol.spec.ts:13:5 › desktop and mobile dashboard render real chain data without overflow (1.4s)
+  ✓  2 browser/protocol.spec.ts:20:5 › wrong network is visible and the wallet can switch and disconnect (741ms)
+  ✓  3 browser/protocol.spec.ts:26:5 › wallet approval rejection stays failed, then actual approval and buy confirm (2.3s)
+  ✓  4 browser/protocol.spec.ts:38:5 › checkout approves, signs, submits and displays indexed settlement separately from fulfillment (5.3s)
+
+  4 passed (11.3s)
+
+To open last HTML report run:
+
+  npx playwright show-report
+

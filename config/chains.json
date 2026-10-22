@@ -1,0 +1,7 @@
+{
+ "31337":{"name":"Local EVM","confirmations":1,"finalityDepth":3,"collateralDecimals":6,"explorer":"","environment":"local"},
+ "84532":{"name":"Base Sepolia","confirmations":5,"finalityDepth":64,"collateralDecimals":6,"explorer":"https://sepolia.basescan.org","environment":"testnet"},
+ "421614":{"name":"Arbitrum Sepolia","confirmations":5,"finalityDepth":64,"collateralDecimals":6,"explorer":"https://sepolia.arbiscan.io","environment":"testnet"},
+ "8453":{"name":"Base","confirmations":20,"finalityDepth":128,"collateralDecimals":6,"explorer":"https://basescan.org","environment":"mainnet"},
+ "42161":{"name":"Arbitrum One","confirmations":20,"finalityDepth":128,"collateralDecimals":6,"explorer":"https://arbiscan.io","environment":"mainnet"}
+}

@@ -1,0 +1,42 @@
+
+MudPriceOracle.read() (contracts/src/MudPriceOracle.sol#29-41) ignores return value by (None,status,since,reported,None) = sequencer.latestRoundData() (contracts/src/MudPriceOracle.sol#31)
+MudPriceOracle.read() (contracts/src/MudPriceOracle.sol#29-41) ignores return value by (round,answer,None,timestamp,answeredRound) = feed.latestRoundData() (contracts/src/MudPriceOracle.sol#35)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unused-return
+
+Reentrancy in MudTreasury.collect(address) (contracts/src/MudTreasury.sol#20-26):
+	External calls:
+	- amount = IMudToken(amm).collectFees() (contracts/src/MudTreasury.sol#22)
+	State variables written after the call(s):
+	- collected += amount (contracts/src/MudTreasury.sol#24)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-2
+
+MudAirdrop.constructor(address,address,bytes32,uint256,uint256) (contracts/src/MudAirdrop.sol#21-30) uses timestamp for comparisons
+	Dangerous comparisons:
+	- token_.code.length == 0 || root_ == bytes32(0) || allocation_ == 0 || expiry_ <= block.timestamp (contracts/src/MudAirdrop.sol#24)
+MudAirdrop.setRoot(bytes32) (contracts/src/MudAirdrop.sol#35-39) uses timestamp for comparisons
+	Dangerous comparisons:
+	- claimedCount != 0 || root == bytes32(0) || block.timestamp >= expiry (contracts/src/MudAirdrop.sol#36)
+MudAirdrop.claim(uint256,address,uint256,bytes32[]) (contracts/src/MudAirdrop.sol#43-52) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp >= expiry || account == address(0) || amount == 0 || index >= 10000 || isClaimed(index) || amount > allocation - claimedAmount || token.balanceOf(address(this)) < allocation - claimedAmount || ! MerkleProof.verifyCalldata(proof,merkleRoot,leaf(index,account,amount)) (contracts/src/MudAirdrop.sol#44-46)
+MudAirdrop.recover(address) (contracts/src/MudAirdrop.sol#53-58) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp < expiry || to == address(0) (contracts/src/MudAirdrop.sol#54)
+MudMarketplace._purchase(uint256,uint256,uint256,bytes32) (contracts/src/MudMarketplace.sol#130-148) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp > deadline (contracts/src/MudMarketplace.sol#131)
+MudPriceOracle.read() (contracts/src/MudPriceOracle.sol#29-41) uses timestamp for comparisons
+	Dangerous comparisons:
+	- status != 0 || since == 0 || since > block.timestamp || reported < since || reported > block.timestamp || block.timestamp - since <= GRACE_PERIOD (contracts/src/MudPriceOracle.sol#32-33)
+	- round == 0 || answer <= 0 || timestamp == 0 || timestamp > block.timestamp || block.timestamp - timestamp > maxAge || answeredRound < round (contracts/src/MudPriceOracle.sol#36-37)
+MudProtocolConfig.execute(uint16,uint16,uint256) (contracts/src/MudProtocolConfig.sol#28-38) uses timestamp for comparisons
+	Dangerous comparisons:
+	- pendingHash != keccak256(bytes)(abi.encode(buyFee,exitFee,limit)) || block.timestamp < executableAt (contracts/src/MudProtocolConfig.sol#30)
+MudTokenAMM.buyTokens(uint256,uint256,uint256) (contracts/src/MudTokenAMM.sol#84-101) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp > deadline (contracts/src/MudTokenAMM.sol#87)
+MudTokenAMM.sellTokens(uint256,uint256,uint256) (contracts/src/MudTokenAMM.sol#113-126) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp > deadline (contracts/src/MudTokenAMM.sol#116)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#block-timestamp
+. analyzed (36 contracts with 100 detectors), 12 result(s) found

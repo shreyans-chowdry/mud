@@ -1,0 +1,89 @@
+
+> mud-protocol@1.0.0 coverage:contracts
+> node scripts/hardhat.cjs coverage
+
+
+Version
+=======
+> solidity-coverage: v0.8.16
+
+Instrumenting for coverage...
+=============================
+
+> interfaces/IAggregator.sol
+> interfaces/IMudToken.sol
+> libraries/CurveMath.sol
+> MudAirdrop.sol
+> MudMarketplace.sol
+> MudPriceOracle.sol
+> MudProtocolConfig.sol
+> MudTokenAMM.sol
+> MudTreasury.sol
+
+Coverage skipped for:
+=====================
+
+> mocks/MockCollateral.sol
+> mocks/MockFeed.sol
+
+Compilation:
+============
+
+Compiled 34 Solidity files successfully (evm target: paris).
+
+Network Info
+============
+> HardhatEVM: v2.29.1
+> network:    hardhat
+
+
+
+  Integrated curve: executable mathematics and conservation
+    ✔ quotes the greatest affordable integrated output, not a spot division (961ms)
+    ✔ fuzzes mint/burn and no-profit roundtrips with independent integer arithmetic (20224ms)
+    ✔ preserves reserve coverage across deterministic adversarial buy/sell/burn sequences (18975ms)
+    ✔ rejects zero, dust redemption, over-redemption, oversized input, slippage and expired deadlines (1344ms)
+    ✔ rejects transfer taxes, failing transfers, negative rebases and reentrant callbacks (1159ms)
+    ✔ separates fees and allows treasury collection without reducing claim coverage (594ms)
+    ✔ bounds extreme supply and enforces immutable parameter constraints (292ms)
+    ✔ tests guardian pause, two-step ownership and delayed bounded config (60ms)
+
+  Airdrop: double-hash leaves, sorted pairs and one-way claims
+    ✔ requires full backing, checks proofs/amount/index, prevents replay and freezes root (567ms)
+
+  Oracle and marketplace: authentic settlement and replay boundaries
+    ✔ pays exactly 95%, burns 5%, lowers liability and respects inventory/limits (696ms)
+    ✔ verifies buyer-signed EIP-712 orders and rejects reuse and wrong chain/contract/nonce (604ms)
+    ✔ rejects invalid, future, stale, depegged and incomplete oracle answers (575ms)
+    ✔ guards L2 sequencer downtime and restart grace period, and normalizes decimals (56ms)
+
+  Administrative merchant containment
+    ✔ prevents a merchant from bypassing administrative deactivation by registering again (51ms)
+
+  Dust cycles and nonzero-supply inversion
+    ✔ cannot extract collateral through repeated one-atom roundtrips (17705ms)
+    ✔ fuzzes integrated inversion from changing supply and validates min-output protection (26353ms)
+
+
+  16 passing (2m)
+
+------------------------|----------|----------|----------|----------|----------------|
+File                    |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
+------------------------|----------|----------|----------|----------|----------------|
+ src/                   |    95.65 |       50 |    87.04 |    93.75 |                |
+  MudAirdrop.sol        |    92.31 |    43.48 |    85.71 |    86.36 |       25,37,38 |
+  MudMarketplace.sol    |    93.18 |    47.22 |     87.5 |    87.88 |... 1,92,93,103 |
+  MudPriceOracle.sol    |      100 |    47.83 |      100 |      100 |                |
+  MudProtocolConfig.sol |      100 |    45.45 |       80 |      100 |                |
+  MudTokenAMM.sol       |    96.36 |    59.57 |       90 |    97.26 |          65,66 |
+  MudTreasury.sol       |      100 |       40 |       75 |      100 |                |
+ src/interfaces/        |      100 |      100 |      100 |      100 |                |
+  IAggregator.sol       |      100 |      100 |      100 |      100 |                |
+  IMudToken.sol         |      100 |      100 |      100 |      100 |                |
+ src/libraries/         |      100 |      100 |      100 |      100 |                |
+  CurveMath.sol         |      100 |      100 |      100 |      100 |                |
+------------------------|----------|----------|----------|----------|----------------|
+All files               |    95.97 |    50.33 |    87.72 |    94.06 |                |
+------------------------|----------|----------|----------|----------|----------------|
+
+> Istanbul reports written to ./coverage/ and ./coverage.json

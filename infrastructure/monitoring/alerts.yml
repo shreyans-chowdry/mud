@@ -1,0 +1,27 @@
+groups:
+  - name: mud
+    rules:
+      - alert: MudApiDown
+        expr: up{job="mud-api"} == 0
+        for: 1m
+        labels: {severity: critical}
+        annotations: {summary: "MUD API cannot be scraped"}
+      - alert: MudIndexerLag
+        expr: mud_indexer_lag_blocks > 50
+        for: 2m
+        labels: {severity: warning}
+        annotations: {summary: "Indexer is behind canonical head"}
+      - alert: MudRpcFailures
+        expr: increase(mud_rpc_failures_total[5m]) > 10
+        labels: {severity: warning}
+        annotations: {summary: "Repeated RPC failures"}
+      - alert: MudWebhookFailures
+        expr: increase(mud_webhook_retries_total[10m]) > 5
+        labels: {severity: warning}
+        annotations: {summary: "Fulfillment delivery retries require attention"}
+
+      - alert: MudIndexerStalled
+        expr: time() - mud_indexer_last_success_timestamp_seconds{job="mud-indexer"} > 120
+        for: 1m
+        labels: {severity: critical}
+        annotations: {summary: "Indexer has not committed recently"}

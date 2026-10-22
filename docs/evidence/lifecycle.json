@@ -1,0 +1,14 @@
+{
+  "chainId": 31337,
+  "generatedAt": "2026-10-18T06:25:34.680Z",
+  "buyTx": "0xd67f348960b4246d4e3fe43fcb2b4cb2b8d13bf9a88f292008fe9cd8a843e5a1",
+  "sellTx": "0x60c01416c11d361df34ea826354bac1bc543da39c70752da1c190a23934450e9",
+  "claimTx": "0xac96f9e68ea34c3c9e4d1534bda88d37a6e2dd5bc5a5fa3bb1e81c1719e412c0",
+  "purchaseTx": "0xd6de618991d426cea4da4d4b7cb5e72b385728baf54533f7eef3f20245fcc27b",
+  "orderId": "b062b51b-bb72-4c99-bac6-5a5fbae10122",
+  "status": "FULFILLED",
+  "mudPaid": "38412906736663518943",
+  "mudBurned": "1920645336833175947",
+  "reserveHealthy": true,
+  "note": "Real local EVM receipts; fulfillment acknowledges a durable LOCAL entitlement record. PostgreSQL usage depends on runtime database configuration."
+}
