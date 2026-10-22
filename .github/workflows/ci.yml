@@ -13,7 +13,7 @@ jobs:
           POSTGRES_USER: mud
           POSTGRES_HOST_AUTH_METHOD: trust
         ports: ['5432:5432']
-        options: --health-cmd 'pg_isready -U mud -d mud_test' --health-interval 3s --health-timeout 3s --health-retries 30
+        options: --health-cmd "pg_isready -U mud -d mud_test" --health-interval 3s --health-timeout 3s --health-retries 30
       redis:
         image: redis:7.4.3-bookworm
         ports: ['6379:6379']
