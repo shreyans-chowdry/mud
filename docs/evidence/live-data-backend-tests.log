@@ -17,4 +17,4 @@ backend/.venv/lib/python3.12/site-packages/websockets/legacy/__init__.py:6
     warnings.warn(  # deprecated in 14.0 - 2024-11-09
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-=================== 18 passed, 2 skipped, 1 warning in 1.32s ===================
+=================== 18 passed, 2 skipped, 1 warning in 1.33s ===================
